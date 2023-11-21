@@ -1,4 +1,7 @@
 import app from './app';
+import connectDB from './config/db';
+
+connectDB();
 
 app.use('/', (req, res) => res.send('Thanks for using this boilerplate :)'));
 
