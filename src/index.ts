@@ -1,9 +1,11 @@
 import app from './app';
 import connectDB from './config/db';
+import usuarioRoutes from './routes/usuarioRoutes';
 
 connectDB();
 
-app.use('/', (req, res) => res.send('Thanks for using this boilerplate :)'));
+// Routes
+app.use('/api/users', usuarioRoutes);
 
 const PORT = process.env.PORT || 4000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
