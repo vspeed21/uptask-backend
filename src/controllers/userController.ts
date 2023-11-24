@@ -1,6 +1,8 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Request, Response } from 'express';
+
 import Usuario from '../models/Usuario';
+import generarId from '../helpers/generarId';
 
 export async function createUser(req: Request, res: Response) {
   // Avoid duplicate users
@@ -23,6 +25,7 @@ export async function createUser(req: Request, res: Response) {
   try {
     const user = new Usuario(req.body);
     const userSaved = await user.save();
+    userSaved.token = generarId();
     res.status(200).json({
       usuario: userSaved,
       errorResponse: {
